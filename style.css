@@ -13,7 +13,9 @@ body {
   font-weight: 700;
   font-size: 30px;
   background: linear-gradient(to left, #d0d0d0 0%, #ffffff 100%);
+
 }
+
 * {
   box-sizing: border-box;
 }
@@ -29,10 +31,10 @@ body {
   background-color: #500098;
   border-radius: 30px;
   box-shadow: 0px 0px 70px -7px;
-  animation: gameboard_scaling 2s 2s 1 forwards
-    cubic-bezier(0.74, 0.81, 0.17, 1);
+  animation: gameboard_scaling 2s 2s 1 forwards cubic-bezier(0.74, 0.81, 0.17, 1), gameboard_padding 4s 2s 1 forwards cubic-bezier(0.74, 0.81, 0.17, 1);
   overflow: hidden;
   color: black;
+  padding-bottom: 1000px;
 }
 
 #gameBoard::before {
@@ -45,8 +47,7 @@ body {
   transform: translate3d(0px, 20px, 0) scale(0.95);
   filter: blur(85px);
   opacity: var(0.7);
-  animation: breathing 6s 1s alternate both infinite
-    cubic-bezier(0.25, 0.63, 0.34, 0.72);
+  animation: breathing 6s 1s alternate both infinite cubic-bezier(0.25, 0.63, 0.34, 0.72);
 }
 
 .square {
@@ -61,8 +62,7 @@ body {
   margin: 5px;
   border-radius: 10px;
   transform: perspective(10px) translateZ(-5px);
-  animation: square_intialize 2s 2.9s 1 forwards
-      cubic-bezier(0.74, 0.81, 0.17, 1),
+  animation: square_intialize 2s 2.9s 1 forwards cubic-bezier(0.74, 0.81, 0.17, 1),
     square_opacity 3s 2.8s 1 forwards cubic-bezier(0.74, 0.81, 0.17, 1);
   box-shadow: 1px 1px 31px -8px;
   opacity: 0;
@@ -95,6 +95,7 @@ body {
   position: absolute;
   background-color: #d50000;
 }
+
 .cross::before {
   left: 50%;
   width: 20%;
@@ -108,6 +109,7 @@ body {
   width: 100%;
   transform: translateY(-50%);
 }
+
 #info {
   color: white;
   font-weight: 700;
@@ -182,8 +184,8 @@ body {
   margin-bottom: 30px;
   overflow: hidden;
   opacity: 0;
-      animation: square_opacity 1s 1 forwards cubic-bezier(0.02, 0.71, 0.32, 1.03), 
-      win 1.6s 0.5s 1 forwards cubic-bezier(1, 0.12, 0, 2.11);
+  animation: square_opacity 1s 1 forwards cubic-bezier(0.02, 0.71, 0.32, 1.03),
+    win 1.6s 0.5s 1 forwards cubic-bezier(1, 0.12, 0, 2.11);
 }
 
 .win_dynamic_island::before {
@@ -233,14 +235,11 @@ body {
   align-items: center;
   border-radius: 50px;
   margin-bottom: 30px;
-  /* position: absolute; */
+  /* position: relative; */
   box-shadow: 0px 0px 70px -7px #2c0054;
   overflow: hidden;
-  animation: dynamic_island_scaling_y 1s 4s 1 forwards
-      cubic-bezier(0.96, 0.92, 0, 0.71),
-    dynamic_island_scaling_x 1s 5s 1 forwards cubic-bezier(0.74, 0.81, 0.17, 1),
-    dynamic_island_visability 0.01s 3s 1 forwards
-      cubic-bezier(0.74, 0.81, 0.17, 1);
+  animation: dynamic_island_scaling_y 1s 4s 1 forwards cubic-bezier(0.96, 0.92, 0, 0.71),
+    dynamic_island_scaling_x 1s 5s 1 forwards cubic-bezier(0.74, 0.81, 0.17, 1);
   color: black;
 }
 
@@ -256,29 +255,42 @@ body {
   animation: welcome_opacity 4s 0.2s 1 forwards cubic-bezier(0.74, 0.81, 0.17, 1);
 }
 
-.welcome::before{
-content: attr(intro);
-position: absolute;
-top: 0;
-left: 0;
-width: 0%;
-height: 100%;
-color: white;
--webkit-text-stroke: 0px #8a04ff;
-border-right:solid white 2px ;
-overflow: hidden;
-animation: slide 1.7s 1s 1 forwards cubic-bezier(0.44, 0.42, 0.17, 1), 
-welcome_opacity 4s 0.2s 1 forwards cubic-bezier(0.74, 0.81, 0.17, 1);
+.welcome::before {
+  content: attr(intro);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  color: white;
+  -webkit-text-stroke: 0px #8a04ff;
+  border-right: solid white 2px;
+  overflow: hidden;
+  animation: slide 1.7s 1s 1 forwards cubic-bezier(0.44, 0.42, 0.17, 1),
+    welcome_opacity 4s 0.2s 1 forwards cubic-bezier(0.74, 0.81, 0.17, 1);
 }
+
+@keyframes gameboard_padding {
+  0% {
+    padding-bottom: 1000px;
+  }
+
+  100% {
+    padding-bottom: 100px;
+  }
+}
+
 
 @keyframes square_intialize {
   0% {
     transform: perspective(10px) translateZ(-5px);
   }
+
   100% {
     transform: perspective(10px) translateZ(-0px);
   }
 }
+
 @keyframes square_opacity {
   0% {
     opacity: 0%;
@@ -303,8 +315,8 @@ welcome_opacity 4s 0.2s 1 forwards cubic-bezier(0.74, 0.81, 0.17, 1);
 
 @keyframes gameboard_mobile_scaling {
   0% {
-    width: 4000px;
-    height: 4000px;
+    width: 2000px;
+    height: 2000px;
   }
 
   100% {
@@ -322,6 +334,7 @@ welcome_opacity 4s 0.2s 1 forwards cubic-bezier(0.74, 0.81, 0.17, 1);
     width: 400px;
   }
 }
+
 @keyframes dynamic_island_scaling_y {
   0% {
     height: 0px;
@@ -380,6 +393,7 @@ welcome_opacity 4s 0.2s 1 forwards cubic-bezier(0.74, 0.81, 0.17, 1);
   50% {
     transform: perspective(10px) translateZ(0px);
   }
+
   100% {
     transform: perspective(10px) translateZ(3px);
   }
@@ -445,18 +459,19 @@ welcome_opacity 4s 0.2s 1 forwards cubic-bezier(0.74, 0.81, 0.17, 1);
   }
 
   100% {
-   width: 100%;
+    width: 100%;
   }
 }
 
 /*////////////////////////////////////////////////////////*/
 
 @media (min-width: 375px) and (max-width: 567.9px) {
-#gameBoard {
+  #gameBoard {
     width: 2000px;
     height: 2000px;
-    animation: gameboard_mobile_scaling 2s 2s 1 forwards cubic-bezier(0.74, 0.81, 0.17, 1);
-    
+    animation: gameboard_mobile_scaling 2s 2s 1 forwards cubic-bezier(0.74, 0.81, 0.17, 1),
+      gameboard_padding 4s 2s 1 forwards cubic-bezier(0.74, 0.81, 0.17, 1);
+
   }
 
   #gameBoard::before {
@@ -480,70 +495,70 @@ welcome_opacity 4s 0.2s 1 forwards cubic-bezier(0.74, 0.81, 0.17, 1);
   }
 
   .cross {
-      height: calc((80px * 2)/3);
-        width: calc((80px * 2)/3);
+    height: calc((80px * 2)/3);
+    width: calc((80px * 2)/3);
   }
 
-#info {
-  
-  font-size: 15px;
-  
-}
+  #info {
 
-.circle_dynamic_island {
-  width: 300px;
-  height: calc((80px * 2)/3);
-}
+    font-size: 15px;
 
-.circle_dynamic_island::before {
-  width: 300px;
-  height: calc((130px * 2)/3);
-  
-}
+  }
 
-.cross_dynamic_island {
-  width: 300px;
-  height: calc((80px * 2)/3);
+  .circle_dynamic_island {
+    width: 300px;
+    height: calc((80px * 2)/3);
+  }
 
-}
+  .circle_dynamic_island::before {
+    width: 300px;
+    height: calc((130px * 2)/3);
 
-.cross_dynamic_island::before {
-  width: 300px;
-  height: calc((130px * 2)/3);
- 
-}
+  }
 
-.win_dynamic_island {
-  width: 300px;
-  height: calc((80px * 2)/3);
- 
-}
+  .cross_dynamic_island {
+    width: 300px;
+    height: calc((80px * 2)/3);
 
-.win_dynamic_island::before {
-  width: 300px;
-  height: calc((130px * 2)/3);
+  }
 
-}
+  .cross_dynamic_island::before {
+    width: 300px;
+    height: calc((130px * 2)/3);
 
-.draw_dynamic_island {
-  width: 300px;
-  height: calc((80px * 2)/3);
-  
-}
+  }
 
-.draw_dynamic_island::before {
-  width: 300px;
-  height: calc((130px * 2)/3);
-  
-}
+  .win_dynamic_island {
+    width: 300px;
+    height: calc((80px * 2)/3);
 
-.dynamic_island {
+  }
 
-  animation: dynamic_island_scaling_mobile_y 1s 4s 1 forwards cubic-bezier(0.96, 0.92, 0, 0.71),
-    dynamic_island_scaling_mobile_x 1s 5s 1 forwards cubic-bezier(0.74, 0.81, 0.17, 1),
-    dynamic_island_visability 0.01s 3s 1 forwards cubic-bezier(0.74, 0.81, 0.17, 1);
-  color: black;
-}
+  .win_dynamic_island::before {
+    width: 300px;
+    height: calc((130px * 2)/3);
+
+  }
+
+  .draw_dynamic_island {
+    width: 300px;
+    height: calc((80px * 2)/3);
+
+  }
+
+  .draw_dynamic_island::before {
+    width: 300px;
+    height: calc((130px * 2)/3);
+
+  }
+
+  .dynamic_island {
+
+    animation: dynamic_island_scaling_mobile_y 1s 4s 1 forwards cubic-bezier(0.96, 0.92, 0, 0.71),
+      dynamic_island_scaling_mobile_x 1s 5s 1 forwards cubic-bezier(0.74, 0.81, 0.17, 1),
+      dynamic_island_visability 0.01s 3s 1 forwards cubic-bezier(0.74, 0.81, 0.17, 1);
+    color: black;
+  }
 
 
 }
