@@ -315,7 +315,7 @@ body {
 
 @keyframes gameboard_mobile_scaling {
   0% {
-    width: 2000px;
+    width: 10px;
     height: 2000px;
   }
 
@@ -467,7 +467,7 @@ body {
 
 @media (min-width: 375px) and (max-width: 567.9px) {
   #gameBoard {
-    width: 2000px;
+    width: 10px;
     height: 2000px;
     animation: gameboard_mobile_scaling 2s 2s 1 forwards cubic-bezier(0.74, 0.81, 0.17, 1),
       gameboard_padding 4s 2s 1 forwards cubic-bezier(0.74, 0.81, 0.17, 1);
