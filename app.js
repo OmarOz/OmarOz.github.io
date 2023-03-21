@@ -7,6 +7,7 @@ let playstate = true;
 let track = 11;
 let remove_welcome = false;
 let remove_roles = false;
+let reset_condition;
 //info.textContent = `${role}'s time`;
 const cells = ["", "", "", "", "", "", "", "", ""];
 
@@ -29,6 +30,7 @@ function play(e) {
   }
   const display = document.createElement("div");
   display.classList.add(role);
+  display.id="c";
   e.target.append(display);
   role = role === "cross" ? "circle" : "cross";
   //info.textContent=`${role}'s time`;
@@ -105,13 +107,21 @@ function drawCheck() {
         notch.append(cross_dynamic_island);
         cross_dynamic_island.textContent = info.textContent;
         playstate = false;
+        reset_condition=".draw_dynamic_island";
       }
       //allSquares.forEach( square => square.replaceWith(square.cloneNode(true)));
       role = "blank";
 
-      return;
+      let rParent=document.querySelector("#resetButton");
+      let reset=document.createElement("div");
+      reset.classList.add("reset");
+      reset.innerHTML="play again";
+      rParent.append(reset);
+      reset.addEventListener("click",resetPlay);
     }
   });
+  
+  return;
 }
 
 function winCheck() {
@@ -128,7 +138,7 @@ function winCheck() {
   ];
 
   winnings.forEach((arr) => {
-    let cross_wins;
+    let cross_wins=false;
     let count = 0;
     arr.forEach((pos) => {
       if (allSquares[pos].firstElementChild?.classList.contains("cross")) {
@@ -156,15 +166,24 @@ function winCheck() {
         notch.append(cross_dynamic_island);
         cross_dynamic_island.textContent = info.textContent;
         playstate = false;
+        reset_condition=".win_dynamic_island";
       }
       role = "blank";
+      
       //allSquares.forEach( square => square.replaceWith(square.cloneNode(true)));
+
+      let rParent=document.querySelector("#resetButton");
+      let reset=document.createElement("div");
+      reset.classList.add("reset");
+      reset.innerHTML="play again";
+      rParent.append(reset);
+      reset.addEventListener("click",resetPlay);
       return;
     }
   });
 
   winnings.forEach((arr) => {
-    let cross_wins;
+    let circle_wins=false;
     let count = 0;
     arr.forEach((pos) => {
       if (allSquares[pos].firstElementChild?.classList.contains("circle")) {
@@ -172,10 +191,10 @@ function winCheck() {
       }
     });
     if (count === 3) {
-      cross_wins = true;
+      circle_wins = true;
     }
-    console.log(cross_wins);
-    if (cross_wins) {
+    console.log(circle_wins);
+    if (circle_wins) {
       if (!remove_roles) {
         let stID = (track - 1).toString();
         var welcome_rm = document.getElementById(stID);
@@ -192,10 +211,51 @@ function winCheck() {
         notch.append(cross_dynamic_island);
         cross_dynamic_island.textContent = info.textContent;
         playstate = false;
+        reset_condition=".win_dynamic_island";
       }
       //allSquares.forEach( square => square.replaceWith(square.cloneNode(true)));
       role = "blank";
+      let rParent=document.querySelector("#resetButton");
+      let reset=document.createElement("div");
+      reset.classList.add("reset");
+      reset.innerHTML="play again";
+      rParent.append(reset);
+      reset.addEventListener("click",resetPlay);
       return;
     }
   });
+}
+
+function resetPlay(){
+console.log(`comming soon`);
+for(let i=0;i<9;i++){
+let rm_roles=document.getElementById(i);
+rm_roles.remove();
+}
+  var element_rm = document.querySelector(reset_condition);
+  element_rm.remove();
+
+
+role = "cross";
+remove_welcome = false;
+let welcome_reset=document.createElement("div");
+welcome_reset.classList.add("dynamic_island");
+welcome_reset.id="role_changer";
+
+
+let notch = document.querySelector(".notch");
+notch.append(welcome_reset);
+let info_reset=document.createElement("div");
+info_reset.id="info";
+info_reset.innerHTML="Press any square to start";
+let welcome_sel = document.querySelector(".dynamic_island");
+welcome_sel.append(info_reset);
+playstate=true;
+remove_roles=false;
+track=11;
+
+let rm_reset=document.querySelector(".reset");
+rm_reset.remove();
+//console.log("count: "+ count);
+startGame();
 }
