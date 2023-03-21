@@ -108,16 +108,18 @@ function drawCheck() {
         cross_dynamic_island.textContent = info.textContent;
         playstate = false;
         reset_condition=".draw_dynamic_island";
-      }
-      //allSquares.forEach( square => square.replaceWith(square.cloneNode(true)));
-      role = "blank";
 
-      let rParent=document.querySelector("#resetButton");
+        let rParent=document.querySelector("#resetButton");
       let reset=document.createElement("div");
       reset.classList.add("reset");
       reset.innerHTML="play again";
       rParent.append(reset);
-      reset.addEventListener("click",resetPlay);
+      reset.addEventListener("click",resetPlay);        
+      }
+      //allSquares.forEach( square => square.replaceWith(square.cloneNode(true)));
+      role = "blank";
+
+      
     }
   });
   
@@ -167,17 +169,19 @@ function winCheck() {
         cross_dynamic_island.textContent = info.textContent;
         playstate = false;
         reset_condition=".win_dynamic_island";
-      }
-      role = "blank";
-      
-      //allSquares.forEach( square => square.replaceWith(square.cloneNode(true)));
 
-      let rParent=document.querySelector("#resetButton");
+        let rParent=document.querySelector("#resetButton");
       let reset=document.createElement("div");
       reset.classList.add("reset");
       reset.innerHTML="play again";
       rParent.append(reset);
       reset.addEventListener("click",resetPlay);
+      }
+      role = "blank";
+      
+      //allSquares.forEach( square => square.replaceWith(square.cloneNode(true)));
+
+      
       return;
     }
   });
@@ -212,15 +216,17 @@ function winCheck() {
         cross_dynamic_island.textContent = info.textContent;
         playstate = false;
         reset_condition=".win_dynamic_island";
-      }
-      //allSquares.forEach( square => square.replaceWith(square.cloneNode(true)));
-      role = "blank";
-      let rParent=document.querySelector("#resetButton");
+
+        let rParent=document.querySelector("#resetButton");
       let reset=document.createElement("div");
       reset.classList.add("reset");
       reset.innerHTML="play again";
       rParent.append(reset);
       reset.addEventListener("click",resetPlay);
+      }
+      //allSquares.forEach( square => square.replaceWith(square.cloneNode(true)));
+      role = "blank";
+      
       return;
     }
   });
